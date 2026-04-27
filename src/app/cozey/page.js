@@ -155,6 +155,11 @@ export default function CozeyPage() {
       >
         <h2>Final interfaces</h2>
         <p>The two solutions — scenario-based visualization and customer stories — were integrated directly into Cozey's existing product page, adding contextual lifestyle videos and a dedicated section for user-submitted photos and reviews. Rather than rebuilding the page, the additions layered onto the current structure to help users picture the sofa in their own space without disrupting the existing purchase flow.</p>
+        <a
+          href="https://www.figma.com/proto/tHg44ISDTVAc7h3J6X2Abu/Portfolio-Case-studies?node-id=1465-7999&viewport=237%2C863%2C0.19&t=Hc1RmbMxDsNLC4Bj-1&scaling=min-zoom&content-scaling=fixed&page-id=1387%3A1881"
+          target="_blank"
+          rel="noopener noreferrer"
+        >View prototype →</a>
       </CaseStudySection>
 
       {/* Learning & Impact — text only */}

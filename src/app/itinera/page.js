@@ -28,7 +28,7 @@ const sections = [
 
 const meta = [
   { label: 'Role', value: 'Lead Product Designer' },
-  { label: 'Timeline', value: 'TBD' },
+  { label: 'Timeline', value: '7 months' },
   { label: 'Tools', value: 'Figma' },
 ];
 

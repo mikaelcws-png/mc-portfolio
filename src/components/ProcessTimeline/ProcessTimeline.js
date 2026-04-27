@@ -65,7 +65,7 @@ const DEFAULT_PHASES = [
 export default function ProcessTimeline({
   phases    = DEFAULT_PHASES,
   startDate = 'Aug 2024',
-  endDate   = 'Dec 2024',
+  endDate   = 'Feb 2025',
 }) {
   const ref      = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px -50% 0px' });
