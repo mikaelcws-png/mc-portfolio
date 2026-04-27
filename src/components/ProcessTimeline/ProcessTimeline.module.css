@@ -1,0 +1,114 @@
+/* ── Wrapper card ── */
+.wrapper {
+  background:    var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-card);
+  padding:       var(--space-8);
+  font-family:   var(--font-sans);
+}
+
+/* ── Date row — same grid as nodeRow so dates align with nodes 1 & 4 ── */
+.dateRow {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:                   var(--space-4);
+  margin-bottom:         var(--space-3);
+}
+
+.dateLabel {
+  font-size:   var(--text-sm);
+  font-weight: 500;
+  color:       var(--color-text-secondary);
+  text-align:  center;
+}
+
+/* ── Node row: grid context for both nodes and the bar ── */
+.nodeRow {
+  position:              relative;
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:                   var(--space-4);
+  align-items:           center;
+  padding-block:         var(--space-2);
+}
+
+/* Bar: spans from center of node 1 to center of node 4.
+   Half a column width = (100% - 3 gaps) / 8              */
+.rail {
+  position:      absolute;
+  top:           50%;
+  left:          calc((100% - 3 * var(--space-4)) / 8);
+  right:         calc((100% - 3 * var(--space-4)) / 8);
+  height:        12px;
+  margin-top:    -6px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(
+    to right,
+    rgba(58, 86, 53, 0.10),
+    rgba(58, 86, 53, 0.45)
+  );
+  z-index: 0;
+}
+
+/* Each cell centres its node above the bar */
+.nodeCell {
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  position:        relative;
+  z-index:         1;
+}
+
+/* ── Icon nodes ── */
+.node {
+  width:           36px;
+  height:          36px;
+  border-radius:   50%;
+  background:      var(--color-surface);
+  box-shadow:      var(--shadow-card);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  color:           var(--color-text-secondary);
+  flex-shrink:     0;
+}
+
+/* ── Phase columns ── */
+.columns {
+  display:               grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:                   var(--space-4);
+  margin-top:            var(--space-6);
+}
+
+.column {
+  display:        flex;
+  flex-direction: column;
+  align-items:    center;
+  gap:            var(--space-3);
+  text-align:     center;
+}
+
+.phaseName {
+  font-size:   var(--text-sm);
+  font-weight: 700;
+  color:       var(--color-text-primary);
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .node {
+    width:  28px;
+    height: 28px;
+  }
+
+  .node svg {
+    width:  14px;
+    height: 14px;
+  }
+}

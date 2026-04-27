@@ -1,0 +1,104 @@
+.sidebar {
+  position: fixed;
+  left: var(--space-8);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* ── Each nav item ── */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* ── The line ── */
+.line {
+  display: block;
+  height: 2px;
+  width: 16px;
+  border-radius: 2px;
+  background: var(--color-text-secondary);
+  opacity: 0.4;
+  flex-shrink: 0;
+  transition:
+    width var(--duration-base) var(--ease-out-expo),
+    background var(--duration-fast) ease,
+    opacity var(--duration-fast) ease;
+}
+
+/* ── The label — hidden at rest ── */
+.label {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-left: 0;
+  transition:
+    max-width var(--duration-base) var(--ease-out-expo),
+    opacity var(--duration-base) var(--ease-out-expo),
+    margin-left var(--duration-base) var(--ease-out-expo),
+    color var(--duration-fast) ease;
+}
+
+/* ── Active state ── */
+.active .line {
+  background: var(--color-accent);
+  width: 24px;
+  opacity: 1;
+}
+
+.active .label {
+  color: var(--color-accent);
+}
+
+/* ── Hover: expand all items ── */
+.sidebar:hover .line {
+  width: 16px;
+  opacity: 0.6;
+}
+
+.sidebar:hover .label {
+  max-width: 160px;
+  opacity: 1;
+  margin-left: var(--space-3);
+}
+
+/* Active takes priority over the general hover state */
+.sidebar:hover .active .line {
+  width: 24px;
+  background: var(--color-accent);
+  opacity: 1;
+}
+
+.sidebar:hover .active .label {
+  color: var(--color-accent);
+}
+
+/* ── Hide on small screens ── */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}

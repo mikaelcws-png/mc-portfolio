@@ -1,0 +1,169 @@
+.contextGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+}
+
+.contextGrid > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .contextGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Problem section ── */
+.problemIntroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: stretch;
+  margin-bottom: var(--space-10);
+}
+
+.problemIntroText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.problemIntroText p {
+  margin: 0;
+  font-size: var(--text-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+}
+
+.problemIntroGrid figure {
+  min-height: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+}
+
+.problemIntroGrid figure img {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+}
+
+.problemIntroGrid figure figcaption {
+  text-align: center;
+}
+
+.competitorSummary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: 0;
+}
+
+.competitorSummaryItem {
+  background: var(--color-highlight-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.competitorSummaryEmoji {
+  font-size: var(--text-2xl);
+  line-height: 1;
+}
+
+.competitorSummaryItem p {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.competitorSummaryHeading {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin: var(--space-10) 0 var(--space-2);
+}
+
+.paragraphSpaced {
+  margin-top: var(--space-10);
+}
+
+/* ── Current state / competitor grid ── */
+.currentStateGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-10);
+  align-items: start;
+  margin-top: var(--space-10);
+}
+
+/* ── User testing stats grid ── */
+.testingStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.testingStatItem {
+  background: var(--color-highlight-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.testingStatValue {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-3xl);
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.testingStatItem p {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* ── Solution images ── */
+.solutionImageGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.solutionImageGrid img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .problemIntroGrid,
+  .currentStateGrid,
+  .competitorSummary,
+  .solutionImageGrid,
+  .testingStatsGrid {
+    grid-template-columns: 1fr;
+  }
+}

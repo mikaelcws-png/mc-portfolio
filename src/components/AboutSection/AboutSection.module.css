@@ -1,0 +1,160 @@
+/* ── Scroll container ── */
+.container {
+  position: relative;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  height: 100vh;
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Individual panel ── */
+.panel {
+  flex-shrink: 0;
+  min-width: 100vw;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: var(--space-16);
+}
+
+/* ── Two-column content grid ── */
+.inner {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* Reverse column order for panels where photo comes first (Panel 2) */
+.innerReverse {
+  direction: rtl;
+}
+
+.innerReverse > * {
+  direction: ltr;
+}
+
+/* ── Text block ── */
+.textContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 520px;
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  font-style: italic;
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.headingLg {
+  font-size: var(--text-4xl);
+}
+
+.body {
+  font-size: var(--text-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+}
+
+/* ── CTA button ── */
+.cta {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-pill);
+  transition: opacity var(--duration-fast) ease;
+}
+
+.cta:hover {
+  opacity: 0.85;
+}
+
+/* ── Photo card container — sized by the image's natural 362×483 ratio ── */
+.photoSide {
+  height: min(500px, 65vh);
+  aspect-ratio: 362 / 483;
+  justify-self: center;
+}
+
+/* ── Scroll progress dots ── */
+.dots {
+  position: fixed;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--space-2);
+  z-index: 10;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(17, 17, 17, 0.18);
+  transition:
+    background var(--duration-base) var(--ease-out-expo),
+    transform var(--duration-base) var(--ease-out-expo);
+}
+
+.dotActive {
+  background: var(--color-accent);
+  transform: scale(1.25);
+}
+
+/* ── Mobile: vertical stack ── */
+@media (max-width: 768px) {
+  .container {
+    display: block;
+    overflow-x: visible;
+    height: auto;
+    scroll-snap-type: none;
+  }
+
+  .panel {
+    min-width: 100%;
+    height: auto;
+    padding-top: 160px;
+    padding-bottom: var(--space-16);
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding-inline: var(--page-gutter);
+  }
+
+  .textContent {
+    max-width: 100%;
+  }
+
+  .photoSide {
+    height: 360px;
+    aspect-ratio: 362 / 483;
+    margin: 0 auto;
+  }
+
+  .dots {
+    display: none;
+  }
+}

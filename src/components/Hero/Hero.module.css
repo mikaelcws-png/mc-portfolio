@@ -1,0 +1,27 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(100px, 20vh, 200px) var(--page-gutter) clamp(60px, 10vh, 120px);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 4.2vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+}
+
+.word {
+  display: inline-block;
+}

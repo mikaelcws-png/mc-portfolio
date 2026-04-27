@@ -1,0 +1,66 @@
+/* ── Card wrapper ── */
+.figure {
+  background:    var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow:    var(--shadow-card);
+  padding:       var(--space-8);
+  margin:        0;
+}
+
+/* ── 2×2 stat grid ── */
+.grid {
+  display:               grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:                   var(--space-4);
+}
+
+/* ── Individual stat tile ── */
+.tile {
+  background:    var(--color-bg);
+  border-radius: var(--radius-md);
+  padding:       var(--space-6);
+  display:       flex;
+  flex-direction: column;
+  gap:           var(--space-1);
+}
+
+.value {
+  font-family: var(--font-sans);
+  font-size:   var(--text-3xl);
+  font-weight: var(--font-weight-bold);
+  color:       var(--color-accent);
+  line-height: var(--line-height-tight);
+}
+
+.label {
+  font-size:   var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  color:       var(--color-text-primary);
+  line-height: var(--line-height-base);
+}
+
+.sublabel {
+  font-size:   var(--text-xs);
+  color:       var(--color-text-secondary);
+  line-height: var(--line-height-base);
+  margin-top:  var(--space-1);
+}
+
+/* ── Caption ── */
+.caption {
+  font-size:  var(--text-sm);
+  color:      var(--color-text-secondary);
+  margin-top: var(--space-5);
+  line-height: var(--line-height-base);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .value {
+    font-size: var(--text-2xl);
+  }
+
+  .tile {
+    padding: var(--space-5);
+  }
+}

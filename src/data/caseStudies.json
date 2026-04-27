@@ -1,0 +1,107 @@
+{
+  "automate": {
+    "title": "AutoMate",
+    "subtitle": "Reducing Decision Friction in Service Marketplaces",
+    "overview": "A Hong Kong-based booking platform where users struggled with trust and location selection. By prioritizing credibility signals and reducing uncertainty, we increased new user conversions by 57%.",
+    "duration": "6 months",
+    "role": "Junior Product Designer",
+    "sections": [
+      {
+        "id": "problem",
+        "label": "Problem",
+        "layout": "text-only",
+        "content": "Users faced significant friction when selecting service locations. Only 33% had granted location access, and perceived financial risk created a major barrier to booking. Inconsistent wording further reduced confidence to commit."
+      },
+      {
+        "id": "approach",
+        "label": "Approach",
+        "layout": "text-only",
+        "content": "We diagnosed the issue as a sequencing and trust breakdown. Rather than relying on GPS permissions, we implemented a map view that allowed users to visually evaluate nearby auto shops. For payment, we suggested taking only a deposit at checkout to reduce friction from low trust."
+      },
+      {
+        "id": "solution",
+        "label": "Solution",
+        "layout": "text-only",
+        "content": "Two key improvements emerged: (1) Auto Shop Location Map: A visual interface that eliminated the need for GPS permissions while helping users evaluate nearby options. Engineering estimated one week for implementation, making it feasible within our timeline. (2) Deposit-First Approach: Moving payment collection to checkout rather than upfront, reducing perceived financial risk and lowering the barrier to initial booking."
+      },
+      {
+        "id": "learning",
+        "label": "Learning & Impact",
+        "layout": "text-only",
+        "content": "In service marketplaces, trust matters more than features, especially when users must pay before receiving a service. We prioritized credibility signals, clear service information, verified reviews, and guarantees to reduce uncertainty and drive in-app bookings. The result: 57% increase in new user conversions. Next opportunity: a transparent quotation workflow that could reduce uncertainty in personalized vehicle service pricing."
+      }
+    ]
+  },
+  "cozey": {
+    "title": "Cozey",
+    "subtitle": "Visualizing Modular Furniture in Small Spaces",
+    "overview": "An online furniture company struggling to help customers visualize how modular sofas adapt to small living spaces. Through scenario-based visualization and customer stories, we achieved 83% user satisfaction and demonstrated authenticity over aesthetics.",
+    "duration": "3 months",
+    "role": "External Product Designer",
+    "sections": [
+      {
+        "id": "problem",
+        "label": "Problem",
+        "layout": "text-only",
+        "content": "Users with limited space struggle to visualize how modular sofas can adapt to their needs, reducing confidence in purchasing decisions and limiting Cozey's appeal in urban markets. Our target cities (Toronto, New York, Montreal) have small average apartment sizes (647–844 sq ft.), yet the product page focused on aesthetics rather than how furniture actually fits into users' homes and daily routines."
+      },
+      {
+        "id": "research",
+        "label": "Research",
+        "layout": "text-only",
+        "content": "I conducted user research with 30 people in Toronto living in small spaces (400–700 sq ft.) from diverse backgrounds and family situations. Current state analysis revealed that product pages explained the product itself but not how it would function in users' homes. Competitive analysis showed that while others offer modular sofas, none effectively address visualization in small spaces or provide ideas on how to maximize limited square footage."
+      },
+      {
+        "id": "solution",
+        "label": "Solution",
+        "layout": "text-only",
+        "content": "Two solutions emerged: (1) Scenario-Based Visualization: Videos and animations demonstrating how furniture adapts to various activities and real-life small apartment settings. (2) Customer Stories and Social Proof: Authentic customer photos, reviews, and user-generated content showing actual furniture setups in small homes, adding authenticity and inspiration."
+      },
+      {
+        "id": "testing",
+        "label": "Testing & Results",
+        "layout": "text-only",
+        "content": "Prototype testing with 30 participants showed strong results: 83% task completion rate with users successfully understanding how to rearrange furniture, 3 minutes average time on task, and 4.3/5 helpfulness rating. Participants found videos and animations genuinely useful for visualizing the product."
+      },
+      {
+        "id": "reflection",
+        "label": "Reflection",
+        "layout": "text-only",
+        "content": "For online furniture stores, authenticity matters more than aesthetics. While aesthetics attract initial attention, authenticity builds trust and resonates with customers seeking genuine, relatable experiences. By showcasing real use cases and stories that reflect practical value, Cozey positions itself as a brand that truly understands its customers. Next opportunity: A/B testing on scenario-based visualization and customer story sections to identify which designs resonate most with users and drive conversion."
+      }
+    ]
+  },
+  "itinera": {
+    "title": "Itinera",
+    "subtitle": "AI-Powered Travel Planning with User-Generated Content",
+    "overview": "A travel itinerary app that combines AI personalization with user-generated content. By enabling users to save, bookmark, and share itineraries, we created a community-driven platform that helps travelers make well-informed decisions.",
+    "duration": "4 months",
+    "role": "Product Designer",
+    "sections": [
+      {
+        "id": "problem",
+        "label": "Problem",
+        "layout": "text-only",
+        "content": "Travelers struggle with planning trips from scratch and often worry about making poor decisions that lead to bad experiences. They need both inspiration and practical guidance when exploring unfamiliar destinations."
+      },
+      {
+        "id": "solution",
+        "label": "Solution",
+        "layout": "text-only",
+        "content": "We built features that balance AI personalization with human insights. Users can save and organize itineraries in their profile, bookmark interesting spots for future trips, and share reviews and activity updates. The app offers two exploration paths: user-generated itineraries that show how others plan trips, and blogs providing in-depth reviews on restaurants, must-visit spots, and destination-specific topics."
+      },
+      {
+        "id": "features",
+        "label": "Key Features",
+        "layout": "text-only",
+        "content": "Profile: Save interested itineraries and AI-generated personalized plans for future reference. Bookmarks Tab: Save spots you discover but aren't visiting soon; add them to itineraries later. Activity Tab: Share reviews and thoughts about spots or public itineraries. Explore: Discover itineraries and blogs created by other travelers to inform your own planning."
+      },
+      {
+        "id": "learning",
+        "label": "Learning & Reflection",
+        "layout": "text-only",
+        "content": "User-generated content is the key to building trust and confidence. Travelers avoid bad experiences by learning from others' real experiences and decisions. Before AI algorithms have enough data to drive personalization, collecting and organizing user insights creates a reliable foundation. Next steps: multi-language support, localization features, real-time itinerary adjustments, multi-destination planning, group coordination tools, and partnerships with local businesses to expand functionality and market reach."
+      }
+    ]
+  }
+}

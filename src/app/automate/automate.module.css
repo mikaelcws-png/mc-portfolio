@@ -1,0 +1,181 @@
+/* ── User section: two-column persona block ── */
+.userBlock {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.userBlock > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.userVisual {
+  position: sticky;
+  top: calc(80px + var(--space-6));
+}
+
+/* ── Persona spacing ── */
+.personaSpacing {
+  margin-top: var(--space-16);
+}
+
+/* ── Common ground block ── */
+.commonGround {
+  display:        grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:            var(--space-6);
+  margin-top:     var(--space-8);
+}
+
+.commonGroundItem {
+  background:    var(--color-highlight-bg);
+  border-radius: var(--radius-md);
+  padding:       var(--space-6);
+  display:       flex;
+  flex-direction: column;
+  gap:           var(--space-3);
+}
+
+.commonGroundEmoji {
+  font-size: var(--text-2xl);
+  line-height: 1;
+}
+
+.commonGroundCaption {
+  font-size:   var(--text-sm);
+  color:       var(--color-text-secondary);
+  white-space: nowrap;
+  margin:      var(--space-3) 0 0;
+}
+
+.commonGroundItem p {
+  font-size:   var(--text-sm);
+  color:       var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+  margin:      0;
+}
+
+/* ── User feedback grid ── */
+.feedbackGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.feedbackItem {
+  background: var(--color-highlight-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.feedbackEmoji {
+  font-size: var(--text-2xl);
+  line-height: 1;
+}
+
+.feedbackItem p {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+/* ── Design pattern research: separated from persona block ── */
+.researchBlock {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Problem subsections ── */
+.problemBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  margin-top: var(--space-12);
+}
+
+.problemItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.problemText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.problemText h3 {
+  margin: 0;
+}
+
+.problemText p {
+  margin: 0;
+}
+
+/* ── Final result subsections ── */
+.finalResultBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  margin-top: var(--space-12);
+}
+
+.finalResultItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.finalResultText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.finalResultText h3 {
+  margin: 0;
+}
+
+.finalResultText p {
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .problemItem {
+    grid-template-columns: 1fr;
+  }
+
+  .userBlock {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .userVisual {
+    position: static;
+  }
+
+  .commonGround {
+    grid-template-columns: 1fr;
+  }
+
+  .feedbackGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .finalResultItem {
+    grid-template-columns: 1fr;
+  }
+}

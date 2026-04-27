@@ -1,0 +1,102 @@
+/* ── User section: personas side by side ── */
+.personaGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+/* ── Problem: bulleted list ── */
+.problemList {
+  list-style: disc;
+  padding-left: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.problemList h4 {
+  margin-top: 0;
+}
+
+/* ── User section: similarities/differences ── */
+.differencesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.differencesGrid > div {
+  background: var(--color-highlight-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ── Solution: numbered items ── */
+.solutionItem {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  margin-bottom: var(--space-6);
+}
+
+.solutionNumber {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.solutionItem h3:first-child {
+  margin-top: 0;
+}
+
+/* ── Solution: sub-block separator ── */
+.subBlockHeading {
+  margin-top: var(--space-16);
+}
+
+/* ── User testing: paragraph left, image right ── */
+.testingLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+/* ── Final result: text left, image right ── */
+.resultItem {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+  margin-bottom: var(--space-16);
+}
+
+.resultItem h3 {
+  margin-top: 0;
+}
+
+.resultText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .differencesGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .testingLayout,
+  .resultItem {
+    grid-template-columns: 1fr;
+  }
+}

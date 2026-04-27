@@ -1,0 +1,129 @@
+.section {
+  padding: var(--space-16) 0;
+}
+
+.sectionNoLabel {
+  padding-top: var(--space-4);
+}
+
+.inner {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* ── Section label ── */
+.label {
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Section headings ── */
+.prose h2,
+.textOnly h2,
+.textFull h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  font-style: italic;
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.prose h3,
+.textOnly h3,
+.textFull h3,
+.prose h4,
+.textOnly h4,
+.textFull h4 {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  margin-top: var(--space-4);
+}
+
+/* ── Prose shared styles ── */
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ── text-only ── */
+.textOnly {
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  color: var(--color-text-primary);
+  font-size: var(--text-base);
+  line-height: var(--line-height-relaxed);
+}
+
+.textOnlyWide {
+  max-width: none;
+}
+
+/* ── text-full-visual ── */
+.textFull {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.textFull .prose {
+  max-width: 680px;
+}
+
+/* ── text-side-visual ── */
+.textSide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: start;
+}
+
+.sideVisualConstrained {
+  position: sticky;
+  top: calc(80px + var(--space-6));
+  display: flex;
+  align-items: flex-start;
+}
+
+.sideVisualConstrained img {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+.sideVisual {
+  position: sticky;
+  top: calc(80px + var(--space-6));
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) 0;
+  }
+
+  .textSide {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  .sideVisual {
+    position: static;
+  }
+}
