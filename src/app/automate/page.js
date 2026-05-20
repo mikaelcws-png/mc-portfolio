@@ -4,6 +4,7 @@ import CaseStudySidebar from '@/components/CaseStudySidebar/CaseStudySidebar';
 import VisualBlock from '@/components/VisualBlock/VisualBlock';
 import FunnelChart from '@/components/FunnelChart/FunnelChart';
 import PersonaCard from '@/components/PersonaCard/PersonaCard';
+import FigmaEmbed from '@/components/FigmaEmbed/FigmaEmbed';
 import NextProjectCard from '@/components/NextProjectCard/NextProjectCard';
 import Footer from '@/components/Footer/Footer';
 import styles from './automate.module.css';
@@ -19,6 +20,7 @@ const sections = [
   { id: 'user',         label: 'User' },
   { id: 'solution',     label: 'Solution' },
   { id: 'final-result', label: 'Final Result' },
+  { id: 'prototype',    label: 'Prototype' },
   { id: 'learning',     label: 'Learning & Impact' },
 ];
 
@@ -261,6 +263,21 @@ export default function AutoMatePage() {
             />
           </div>
         </div>
+      </CaseStudySection>
+
+      <CaseStudySection
+        id="prototype"
+        label="Prototype"
+        layout="text-full-visual"
+        visualNode={
+          <FigmaEmbed
+            src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/tHg44ISDTVAc7h3J6X2Abu/Portfolio-Case-studies?node-id=496-1222&scaling=scale-down&content-scaling=fixed&starting-point-node-id=55%3A237&page-id=0%3A1"
+            title="AutoMate interactive prototype"
+          />
+        }
+      >
+        <h2>Try it yourself</h2>
+        <p>Click through the interactive prototype to experience the redesigned booking flow.</p>
       </CaseStudySection>
 
       <CaseStudySection id="learning" label="Learning & Impact" layout="text-only">
