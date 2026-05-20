@@ -271,7 +271,7 @@ export default function AutoMatePage() {
         layout="text-full-visual"
         visualNode={
           <FigmaEmbed
-            src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/tHg44ISDTVAc7h3J6X2Abu/Portfolio-Case-studies?node-id=496-1222&scaling=scale-down&content-scaling=fixed&starting-point-node-id=55%3A237&page-id=0%3A1"
+            src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/tHg44ISDTVAc7h3J6X2Abu/Portfolio-Case-studies?node-id=55-237&scaling=scale-down&content-scaling=fixed&starting-point-node-id=55%3A237&page-id=0%3A1"
             title="AutoMate interactive prototype"
           />
         }
