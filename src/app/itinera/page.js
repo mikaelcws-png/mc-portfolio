@@ -9,6 +9,7 @@ import ResearchBreakdown from '@/components/ResearchBreakdown/ResearchBreakdown'
 import PersonaCard from '@/components/PersonaCard/PersonaCard';
 import MarketDataViz from '@/components/MarketDataViz/MarketDataViz';
 import JourneyMap, { LAURA_DATA, WILLIAM_DATA } from '@/components/JourneyMap/JourneyMap';
+import FigmaEmbed from '@/components/FigmaEmbed/FigmaEmbed';
 import styles from './itinera.module.css';
 
 export const metadata = {
@@ -23,6 +24,7 @@ const sections = [
   { id: 'solution',     label: 'Solution' },
   { id: 'user-testing', label: 'User Testing' },
   { id: 'final-result', label: 'Final Result' },
+  { id: 'prototype',    label: 'Prototype' },
   { id: 'learning',     label: 'Learning & Impact' },
 ];
 
@@ -243,6 +245,21 @@ export default function ItineraPage() {
           </div>
           <VisualBlock type="image" src="/images/case-studies/itinera-explore.png" alt="Explore and blog screens" natural />
         </div>
+      </CaseStudySection>
+
+      <CaseStudySection
+        id="prototype"
+        label="Prototype"
+        layout="text-full-visual"
+        visualNode={
+          <FigmaEmbed
+            src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/tHg44ISDTVAc7h3J6X2Abu/Portfolio-Case-studies?node-id=1014-754&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1014%3A754&page-id=8%3A1775"
+            title="Itinera interactive prototype"
+          />
+        }
+      >
+        <h2>Try it yourself</h2>
+        <p>Click through the interactive prototype to experience the Itinera travel planning flow.</p>
       </CaseStudySection>
 
       <CaseStudySection id="learning" label="Learning & Impact" layout="text-only">
