@@ -190,6 +190,8 @@ AutoMate, Cozey, Itinera — each page uses `CaseStudySection` to structure cont
 
 **`VisualBlock`** — Props: `type` (`'image'` | `'image-grid'` | `'video'` | `'embed'`), `src`, `alt`, `caption`, `items`, `aspectRatio` (default `'16/9'`), `natural` (boolean, default `false`), `noShadow` (boolean, default `false`). When `natural={true}`, the image renders at its intrinsic proportions (`height: auto`, no aspect-ratio box) — use this for diagrams, wireframes, and screenshots where cropping would hide content. When `noShadow={true}`, the drop shadow is removed from the image or wrapper — use this for images that already have a transparent or designed background. Styled with `--radius-lg` and `--shadow-card` by default.
 
+**`FigmaEmbed`** — `'use client'` component. Props: `src` (Figma embed URL), `title` (accessibility label, default `'Figma prototype'`), `aspectRatio` (default `'9/16'` for mobile portrait). Renders an `<iframe>` inside a wrapper with `--radius-lg`, `--shadow-card`, `overflow: hidden`, `max-width: 400px`, centered. To get the embed URL from a Figma prototype share link: `https://www.figma.com/embed?embed_host=share&url=<prototype-url>` — strip `show-proto-sidebar=1` for a cleaner embed. The `node-id` param controls which screen loads first.
+
 ---
 
 ## React-based Visuals
@@ -336,6 +338,12 @@ Use standard `<img>` tags with `loading="lazy"` in components, or Framer Motion 
 - Each item: `.finalResultText` (h3 + paragraphs) left, `<VisualBlock natural noShadow />` right
 - Items: Auto shop location (map view) and Deposit (deposit-only checkout)
 
+### #prototype section
+- Layout: `text-full-visual`
+- h2: "Try it yourself"
+- One sentence: "Click through the interactive prototype to experience the redesigned booking flow."
+- `visualNode`: `<FigmaEmbed src="..." title="AutoMate interactive prototype" />` — node-id `55-237`, starting-point-node-id `55:237`, page-id `0:1`
+
 ### #learning section
 - Layout: `text-only`
 - h2: "Trust matters more than features" (Instrument Serif italic)
@@ -438,6 +446,12 @@ Content renders in this exact order inside the `<CaseStudySection id="user">`:
 
 ### Itinera #final-result section layout
 Each feature (AI personalized itinerary, Itinerary detail, Profile, Explore) is wrapped in `.resultItem` — a 2-col grid with text left and a `natural` `VisualBlock` right. Column gap and margin-bottom between items: `--space-16` (64px). Stacks to single column on mobile.
+
+### Itinera #prototype section
+- Layout: `text-full-visual`
+- h2: "Try it yourself"
+- One sentence: "Click through the interactive prototype to experience the Itinera travel planning flow."
+- `visualNode`: `<FigmaEmbed src="..." title="Itinera interactive prototype" />` — node-id `1014-754`, starting-point-node-id `1014:754`, page-id `8:1775`
 
 ### JourneyMap bubble positioning notes
 Speech bubble positions (`topPct`) are percentage offsets from the top of the 460px curve area. When adjusting:
