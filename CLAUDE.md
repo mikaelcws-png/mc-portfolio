@@ -31,7 +31,8 @@ Portfolio/
 ├── src/
 │   ├── app/
 │   │   ├── layout.js        ← Root layout: loads Inter + Instrument Serif, globals.css, wraps Nav + Footer
-│   │   ├── page.js          ← Homepage
+│   │   ├── page.js          ← Homepage (desktop/mobile split — see Homepage section below)
+│   │   ├── page.module.css  ← `.desktopOnly` / `.mobileOnly` display toggles, breakpoint 768px
 │   │   ├── about/page.js    ← About Me (horizontal snap-scroll)
 │   │   ├── automate/page.js ← Case study stub
 │   │   ├── cozey/page.js    ← Case study stub
@@ -39,9 +40,10 @@ Portfolio/
 │   ├── components/
 │   │   ├── Nav/             ← Nav.js + Nav.module.css
 │   │   ├── Footer/
-│   │   ├── Hero/
+│   │   ├── Hero/            ← Still rendered on mobile homepage only (see Homepage section)
+│   │   ├── ThoughtMap/      ← Desktop-only homepage canvas thought map (ThoughtMap.js + .module.css)
 │   │   ├── CaseStudyCard/
-│   │   ├── CaseStudyGrid/
+│   │   ├── CaseStudyGrid/   ← Still rendered on mobile homepage only
 │   │   ├── PhotoCard/
 │   │   ├── Highlight/       ← Inline peach-tinted text emphasis span
 │   │   ├── AboutSection/    ← Horizontal snap-scroll container (highest complexity)
@@ -83,7 +85,8 @@ Portfolio/
 - **Instrument Serif:** weight 400 only; always rendered `font-style: italic` in this project
 
 **Where `--font-serif` is used:**
-- `Hero` — full headline, `font-size: clamp(1rem, 4.2vw, 3rem)` (16px–48px), forced 2-line split via `display: block` spans. Marked `'use client'`. Each word animates in with a bottom-to-top slide (`y: 16 → 0`) + fade, staggered at 70ms per word, 0.35s per-word duration, `cubic-bezier(0.4, 0, 0.2, 1)` easing — full sentence completes in ~0.98s.
+- `Hero` — mobile-only homepage headline (≤768px), full headline, `font-size: clamp(1rem, 4.2vw, 3rem)` (16px–48px), forced 2-line split via `display: block` spans. Marked `'use client'`. Each word animates in with a bottom-to-top slide (`y: 16 → 0`) + fade, staggered at 70ms per word, 0.35s per-word duration, `cubic-bezier(0.4, 0, 0.2, 1)` easing — full sentence completes in ~0.98s.
+- `ThoughtMap` — desktop-only homepage headline (>768px), same copy as `Hero`, set inside the center oval node at `font-size: clamp(1rem, 3.6vw, 2.5rem)` — slightly smaller than `Hero`'s max so it doesn't dominate the canvas. Main-node labels (`AutoMate`, `Cozey`, etc.) intentionally do **not** use `--font-serif` — they're drawn in Inter regular (400) directly via `ctx.font` on the canvas, matching the satellite labels' family, just at a larger size (20px vs 16px) and darker color (`#111111` vs `#525C50`) for hierarchy.
 - `AboutSection` — all panel headings (`.heading` class)
 - `CaseStudyHero` — `.title` (case study name)
 - `CaseStudySection` — all `h2` section headings
@@ -144,11 +147,13 @@ Portfolio/
 ## Pages
 
 ### Homepage (`/`)
-Hero → Case study grid (AutoMate, Cozey, Itinera) → Footer.
+Desktop and mobile render entirely different homepages, both always present in the DOM and toggled via CSS (`src/app/page.module.css` — `.desktopOnly` / `.mobileOnly`, breakpoint `768px`). Both render in `page.js` simultaneously; there's no JS viewport detection, so there's no hydration flash. `Footer` renders once, shared by both.
 
-Hero copy: *"I'm Mikael, and I overthink / so you don't have to."* — forced 2-line break via two `<span className={styles.line}>` blocks (`display: block; white-space: nowrap`). Full sentence in Instrument Serif italic. Font scales via `clamp(1rem, 4.2vw, 3rem)` (16px–48px) to stay 2 lines at all viewport widths.
+**Desktop (>768px):** `ThoughtMap` — see `ThoughtMap.md` and `src/components/ThoughtMap/` for full implementation details. Summary: a full-viewport (`100vh`) interactive canvas thought map with four clusters (AutoMate, Cozey, Itinera, Trust Calibration) and satellite topic nodes, plus a center "headline node" — an oval styled like a quiet outline (not a glass card) containing the *"I'm Mikael, and I overthink / so you don't have to."* copy. The oval is connected to all four main nodes by edges that start at the oval's actual rendered border (computed live via `getBoundingClientRect()`, not the canvas's literal center point). The headline + oval fade in first; the four clusters scatter outward 900ms later. Hovering a node highlights its edges, dims the headline, and shows a floating glass hover card. A faint 20px grid (`rgba(0,0,0,0.05)`, notebook-paper effect) sits behind everything via `background-image` on `.section`.
 
-Each word is wrapped in a `<motion.span>` (inside a `<Fragment>` with a trailing `{' '}` for natural spacing). Words animate bottom-to-top (`y: 16 → 0`) with fade-in, staggered at 70ms per word, 0.35s duration each, `cubic-bezier(0.4, 0, 0.2, 1)` ease — all 10 words complete in ~0.98s. `Hero` is marked `'use client'`.
+**Mobile (≤768px):** Falls back to the original `Hero` + `CaseStudyGrid` — unchanged from before the `ThoughtMap` redesign. Hero copy: *"I'm Mikael, and I overthink / so you don't have to."* — forced 2-line break via two `<span className={styles.line}>` blocks (`display: block; white-space: nowrap`). Full sentence in Instrument Serif italic. Font scales via `clamp(1rem, 4.2vw, 3rem)` (16px–48px) to stay 2 lines at all viewport widths. Each word is wrapped in a `<motion.span>` (inside a `<Fragment>` with a trailing `{' '}` for natural spacing). Words animate bottom-to-top (`y: 16 → 0`) with fade-in, staggered at 70ms per word, 0.35s duration each, `cubic-bezier(0.4, 0, 0.2, 1)` ease — all 10 words complete in ~0.98s. `Hero` is marked `'use client'`.
+
+**Known tradeoff:** `ThoughtMap`'s canvas animation loop still runs while hidden (`display: none`) on mobile, since both components are always mounted. Negligible on a portfolio site, but worth knowing if this pattern gets reused somewhere more performance-sensitive.
 
 ### About Me (`/about`)
 Three sections that snap horizontally. Each section is `100vw` wide. CSS `scroll-snap-type: x mandatory` handles the snap; Framer Motion `useScroll({ container: ref, axis: 'x' })` drives content animations.
@@ -176,7 +181,11 @@ AutoMate, Cozey, Itinera — each page uses `CaseStudySection` to structure cont
 
 ## Component Notes
 
-**`Nav`** — Floating pill, `position: fixed`, centered with `width: fit-content; margin: 0 auto`. "MC" in `--color-accent` on left, links on right.
+**`Nav`** — Floating pill, `position: fixed`, centered with `width: fit-content; margin: 0 auto`. "MC" in `--color-accent` on left, links on right. Glassmorphic background (`rgba(255,255,255,0.55)` + `backdrop-filter: blur(48px) saturate(180%)`).
+
+**`ThoughtMap`** — `'use client'`, desktop-only homepage component (hidden on mobile via `page.module.css`). See `ThoughtMap.md` for full implementation details: graph structure, scatter animation, the headline/oval center node, and the ellipse-boundary edge math.
+
+**`Footer`** — Shared across all pages. Responsive: at `≤768px`, `.inner` switches from `flex-direction: row` to `column` (greeting/copyright stacks above the link columns), and `.columns` gap shrinks from `--space-12` to `--space-8`. "Glad you're here!" heading is `--font-weight-medium` (500) — was bold (700) before, which read too heavy at `--text-2xl`.
 
 **`PhotoCard`** — White card (`--color-surface`, `--radius-lg`, `--shadow-card`) containing an image with `--radius-img`. Can have a subtle `rotate` CSS transform for the "floating photo" aesthetic.
 
@@ -222,6 +231,8 @@ npm run build    # builds to /out (static export)
 ```
 
 Deploy by connecting the GitHub repo to Vercel. No server-side features are used.
+
+**Gotcha — `backdrop-filter` build order:** Turbopack/Lightning CSS will silently strip the unprefixed `backdrop-filter` declaration during minification if `-webkit-backdrop-filter` is written *after* it, leaving only the (often non-functional in this rendering path) `-webkit-` version in the compiled CSS — the blur then visually does nothing, with no build error. Always write `-webkit-backdrop-filter` **before** `backdrop-filter` in any rule using both. Verify by checking the actual served CSS chunk (`_next/static/chunks/*.css`) if a blur isn't showing — `getComputedStyle()` in the browser console can lie here too since it reflects whichever property survived minification.
 
 ---
 
