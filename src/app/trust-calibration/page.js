@@ -58,7 +58,7 @@ export default function TrustCalibrationPage() {
       </CaseStudySection>
 
       <CaseStudySection id="user-profile" label="User Profile" layout="text-only" wide>
-        <h2>Who this is designed for</h2>
+        <h2>Use case</h2>
         <p>Maya is a mid-level lending auditor who was handed an AI tool with no explanation of how it works or what it's supposed to do. Her situation is the norm, not the exception - enterprise AI is deployed into teams where most users have no baseline familiarity with what the agent does or how to evaluate its output.</p>
         <PersonaCard
           variant="automate"
