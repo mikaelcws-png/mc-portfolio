@@ -76,7 +76,7 @@ export function Screen1({ onNext }: Screen1Props) {
     if (step < 4) {
       const q = QUESTIONS[step];
       setCurrentValue(answers[q.id] || "");
-      const timer = setTimeout(() => inputRef.current?.focus(), 200);
+      const timer = setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 200);
       return () => clearTimeout(timer);
     }
   }, [step]);
