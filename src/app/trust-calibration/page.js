@@ -20,8 +20,8 @@ export default function TrustCalibrationPage() {
   return (
     <>
       <CaseStudyHero
-        title="Trust Calibration for Enterprise AI Agents"
-        tagline="Enterprise AI products are designed for users who already trust them. Most don't. This is what designing for the gap looks like."
+        title="Trust Calibration for Agentic AI in Enterprise"
+        tagline="Agentic AI products are designed for users who already trust them. Most don't. This is what designing for the gap looks like."
         image="/images/case-studies/trust-calibration-cover.png"
         imageAlt="Trust Calibration case study cover"
         meta={meta}
@@ -30,7 +30,7 @@ export default function TrustCalibrationPage() {
 
       <CaseStudySection id="problem" label="Problem Statement" layout="text-only" wide>
         <h2>The problem nobody has designed for</h2>
-        <p>Enterprise AI tools are being deployed into organizations where most users have no prior experience working with an AI agent. These users arrive without a mental model of what the agent does, how it reasons, or what happens when it gets something wrong.</p>
+        <p>Agentic AI tools are being deployed into organizations where most users have no prior experience working with an AI agent. These users arrive without a mental model of what the agent does, how it reasons, or what happens when it gets something wrong.</p>
         <p>The products themselves assume a level of familiarity the user hasn't earned yet. They ask for action-level trust before establishing baseline trust. The result is low adoption, shallow usage, and AI investment that doesn't convert into measurable business value.</p>
         <p>This isn't a UI problem. It's a sequencing problem. The industry hasn't designed for the moment before the agent can be useful.</p>
       </CaseStudySection>
@@ -54,7 +54,7 @@ export default function TrustCalibrationPage() {
       >
         <h2>Layers of trust, but the base is missing.</h2>
         <p>Baseline trust is the belief that a system is predictable and understandable - that you know roughly what it will do and why. Action-level trust is the willingness to act on a system's output and put your name on the result. These are different things, and they have to be earned in sequence. You can't skip baseline trust and expect action-level trust to follow.</p>
-        <p>Enterprise AI products are designed around action-level trust. They surface recommendations, flag anomalies, and generate outputs. What they rarely do is show their work in a way that builds the baseline layer first. The assumption is that users will calibrate through experience. But in organizational contexts, most users don't have the time, the safety, or the permission to experiment before they're expected to produce.</p>
+        <p>Agentic AI products are designed around action-level trust. They surface recommendations, flag anomalies, and generate outputs. What they rarely do is show their work in a way that builds the baseline layer first. The assumption is that users will calibrate through experience. But in organizational contexts, most users don't have the time, the safety, or the permission to experiment before they're expected to produce.</p>
       </CaseStudySection>
 
       <CaseStudySection id="user-profile" label="User Profile" layout="text-only" wide>
