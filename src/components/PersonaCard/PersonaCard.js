@@ -20,6 +20,8 @@ export default function PersonaCard({
   painPoints = [],
   currentSolution,
   interests = [],
+  photoWrapClassName,
+  photoClassName,
 }) {
   const ref      = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '0px 0px -30% 0px' });
@@ -35,9 +37,9 @@ export default function PersonaCard({
       >
         {/* ── Top row: photo + demographics + quote ── */}
         <div className={styles.automateTop}>
-          <div className={styles.automatePhotoWrap}>
+          <div className={`${styles.automatePhotoWrap}${photoWrapClassName ? ` ${photoWrapClassName}` : ''}`}>
             {imageSrc ? (
-              <img src={imageSrc} alt={imageAlt || name} className={styles.automatePhoto} loading="lazy" />
+              <img src={imageSrc} alt={imageAlt || name} className={`${styles.automatePhoto}${photoClassName ? ` ${photoClassName}` : ''}`} loading="lazy" />
             ) : (
               <div className={styles.photoFallback}>{name?.charAt(0)}</div>
             )}

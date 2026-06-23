@@ -27,17 +27,31 @@
   margin: 0 auto;
   padding: var(--space-10) var(--page-gutter) 0;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   gap: var(--space-12);
 }
 
-/* ── Left: title + tagline ── */
+/* ── Stacked variant (noWrapTitle): title on top, tagline+meta below ── */
+.contentStacked {
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+/* ── Left: title + tagline (default layout) ── */
 .left {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   max-width: 560px;
+}
+
+/* ── Bottom row (stacked layout): tagline left, meta right ── */
+.bottom {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-12);
 }
 
 .title {
@@ -49,10 +63,19 @@
   color: var(--color-text-primary);
 }
 
+.titleNoWrap {
+  white-space: nowrap;
+}
+
+.leftFull {
+  max-width: none;
+}
+
 .tagline {
   font-size: var(--text-lg);
   color: var(--color-text-secondary);
   line-height: var(--line-height-base);
+  max-width: 460px;
 }
 
 /* ── Right: meta strip horizontal ── */
@@ -92,6 +115,11 @@
     align-items: flex-start;
     gap: var(--space-8);
     padding-top: var(--space-8);
+  }
+
+  .bottom {
+    flex-direction: column;
+    gap: var(--space-6);
   }
 
   .title {
