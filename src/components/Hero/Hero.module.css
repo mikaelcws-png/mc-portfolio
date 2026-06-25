@@ -9,7 +9,7 @@
 
 .headline {
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 4.2vw, 3rem);
+  font-size: clamp(1rem, 5vw, 3rem);
   font-weight: 400;
   font-style: italic;
   color: var(--color-text-primary);

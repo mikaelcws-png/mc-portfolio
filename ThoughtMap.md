@@ -1,6 +1,6 @@
 # ThoughtMap Component
 
-Interactive thought-map hero for the **desktop homepage only** (>768px — see `src/app/page.module.css`). The headline appears first, inside an oval "hub" node at canvas center; 900ms later, four cluster dots scatter outward from that hub, connected to it by edges, while satellites and cross-links reveal alongside. Hovering any node highlights its direct edges and shows a case study card near the cursor. Clicking navigates to the case study. On mobile (≤768px), the original `Hero` + `CaseStudyGrid` render instead — see the Homepage section in `CLAUDE.md`.
+Interactive thought-map hero for the **desktop homepage only** (>1024px — see `src/app/page.module.css`). The headline appears first, inside an oval "hub" node at canvas center; 900ms later, four cluster dots scatter outward from that hub, connected to it by edges, while satellites and cross-links reveal alongside. Hovering any node highlights its direct edges and shows a case study card near the cursor. Clicking navigates to the case study. On mobile/tablet (≤1024px), the original `Hero` + `CaseStudyGrid` render instead — see the Homepage section in `CLAUDE.md`.
 
 ---
 
@@ -12,7 +12,7 @@ src/components/ThoughtMap/
 └── ThoughtMap.module.css
 ```
 
-Used in `src/app/page.js`, wrapped in a `.desktopOnly` div (`page.module.css`) alongside a `.mobileOnly` div containing `Hero` + `CaseStudyGrid`. Both are always mounted; CSS `display` toggles between them at the `768px` breakpoint. `ThoughtMap`'s animation loop keeps running while hidden on mobile — a known, accepted tradeoff (negligible cost on this site).
+Used in `src/app/page.js`, wrapped in a `.desktopOnly` div (`page.module.css`) alongside a `.mobileOnly` div containing `Hero` + `CaseStudyGrid`. Both are always mounted; CSS `display` toggles between them at the `1024px` breakpoint. `ThoughtMap`'s animation loop keeps running while hidden on mobile — a known, accepted tradeoff (negligible cost on this site).
 
 ---
 
@@ -287,7 +287,7 @@ Clicking any node (main or satellite) navigates to that cluster's case study URL
 
 ## Background grid
 
-`.section` has a `background-image` of two tiled 1px `linear-gradient`s (horizontal + vertical), `rgba(0, 0, 0, 0.05)`, `background-size: 20px 20px` — a faint notebook-paper grid sitting behind the canvas, nodes, and oval. Opacity was deliberately kept at 5%: visible enough to add texture, faint enough that nothing drawn on top competes with it.
+`.section` has a `background-image` of two tiled 1px `linear-gradient`s (horizontal + vertical), `rgba(0, 0, 0, 0.03)`, `background-size: 20px 20px` — a faint notebook-paper grid sitting behind the canvas, nodes, and oval. Opacity was originally 5%, then dialed down to 3% for an even subtler texture. The same rule is duplicated on `.mobileOnly` in `src/app/page.module.css` so the grid is consistent across all viewport widths, not just desktop.
 
 ## Canvas draw order (each frame)
 
@@ -343,4 +343,4 @@ No props. All data (`CLUSTERS`, `CROSS_EDGES`) is internal. To update content, e
 | `src/components/ThoughtMap/ThoughtMap.js` | Component — all logic, data, and rendering |
 | `src/components/ThoughtMap/ThoughtMap.module.css` | Layout, headline/oval, hover card, grid background styles |
 | `src/app/page.js` | Renders `<ThoughtMap />` inside `.desktopOnly`, `<Hero />` + `<CaseStudyGrid />` inside `.mobileOnly`, plus shared `<Footer />` |
-| `src/app/page.module.css` | `.desktopOnly` / `.mobileOnly` display toggles at `768px` |
+| `src/app/page.module.css` | `.desktopOnly` / `.mobileOnly` display toggles at `1024px`; also duplicates the grid background onto `.mobileOnly` |
