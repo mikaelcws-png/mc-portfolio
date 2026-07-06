@@ -6,6 +6,11 @@
   margin-top: var(--space-8);
 }
 
+/* Extra space below the "what nobody told her" grid before the persona card */
+.gapBelow {
+  margin-bottom: var(--space-8);
+}
+
 .commonGroundItem {
   background: var(--color-highlight-bg);
   border-radius: var(--radius-md);

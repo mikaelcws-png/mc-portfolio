@@ -55,29 +55,46 @@ export default function TrustCalibrationPage() {
         <h2>Layers of trust, but the base is missing.</h2>
         <p>Baseline trust is the belief that a system is predictable and understandable - that you know roughly what it will do and why. Action-level trust is the willingness to act on a system's output and put your name on the result. These are different things, and they have to be earned in sequence. You can't skip baseline trust and expect action-level trust to follow.</p>
         <p>Agentic AI products are designed around action-level trust. They surface recommendations, flag anomalies, and generate outputs. What they rarely do is show their work in a way that builds the baseline layer first. The assumption is that users will calibrate through experience. But in organizational contexts, most users don't have the time, the safety, or the permission to experiment before they're expected to produce.</p>
+        <p>Even reasoning traces don't close the gap. A trace answers "what did it do" after the fact. Calibration answers "can I rely on it" before the first real case. Traces are the raw material for trust - calibration is the mechanism that builds it.</p>
       </CaseStudySection>
 
       <CaseStudySection id="user-profile" label="User Profile" layout="text-only" wide>
         <h2>Use case</h2>
-        <p>Maya is a mid-level lending auditor who was handed an AI tool with no explanation of how it works or what it's supposed to do. Her situation is the norm, not the exception - enterprise AI is deployed into teams where most users have no baseline familiarity with what the agent does or how to evaluate its output.</p>
+        <p>Maya is a mid-level lending auditor at an equipment rental company. As part of a firm-wide AI initiative, her team was given an enterprise AI workspace built for regulated industries - an AI assistant, search across the company's internal systems, and customizable agents that automate multi-step workflows.</p>
+        <p>On paper, it should transform her work. A lending audit means pulling a loan file - application, income documents, credit reports, approval memos - and verifying the decision followed policy. The workspace can search and summarize documents scattered across the company's systems, extract key figures, flag inconsistencies between what was documented and what policy requires, and draft the audit summary. A day of manual document review should become a couple of hours of reviewing the agent's work.</p>
+        <p>But Maya's confusion sits in her workflow, not the product. The workspace logs its interactions and shows reasoning traces - the tool itself is well built. What nobody told her is how to work with it. The capability was deployed. The working relationship wasn't.</p>
+        <div className={`${styles.commonGround} ${styles.gapBelow}`}>
+          <div className={styles.commonGroundItem}>
+            <span className={styles.commonGroundLabel}>Delegation</span>
+            <p>Which parts of the audit is she allowed to delegate to the agent, and which must she still do herself?</p>
+          </div>
+          <div className={styles.commonGroundItem}>
+            <span className={styles.commonGroundLabel}>Defensibility</span>
+            <p>Is an agent-drafted summary defensible when a regulator asks who verified the income documents?</p>
+          </div>
+          <div className={styles.commonGroundItem}>
+            <span className={styles.commonGroundLabel}>Judgment</span>
+            <p>How does the agent decide a discrepancy is worth flagging versus ignoring?</p>
+          </div>
+        </div>
         <PersonaCard
           variant="automate"
           name="Maya"
           imageSrc="/images/case-studies/maya.png"
           imageAlt="Maya, mid-level lending auditor"
           demographics={{ age: '34', occupation: 'Mid-level Lending Auditor', location: 'Toronto, ON' }}
-          quote="I was handed this tool. Nobody explained what it's for or how to use it. I just need to know I can trust it before I put my name on anything."
+          quote="The tool can show me exactly what it did. What nobody can tell me is whether I'm allowed to rely on it."
           goals={[
             'Complete lending audits faster without sacrificing defensibility',
             'Understand what the agent is doing and why',
             'Build a workflow she can rely on case after case',
           ]}
           painPoints={[
-            'No training or setup guidance was provided',
+            'No one defined which audit steps she can delegate to the agent',
             'Output needs to be defensible to managers and regulators',
             "Can't tell where the agent's judgment ends and hers begins",
           ]}
-          currentSolution="Manual document review with no AI assistance"
+          currentSolution="Re-verifies everything the agent produces manually - erasing the time savings"
           interests={['Professional accuracy', 'Regulatory compliance', 'Efficient workflows']}
           photoWrapClassName={styles.mayaPhotoWrap}
           photoClassName={styles.mayaPhoto}

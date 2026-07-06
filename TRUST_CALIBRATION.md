@@ -59,6 +59,7 @@ Prose:
 - h2: "Two types of trust. One is missing."
 - Paragraph explaining baseline trust vs action-level trust distinction
 - Paragraph on organizational context problem
+- Paragraph on traces vs calibration (from `maya-tool-context.md`): reasoning traces answer "what did it do" after the fact; calibration answers "can I rely on it" before the first real case. Traces are the raw material for trust — calibration is the mechanism that builds it.
 
 Trust Pyramid image as `visualNode` (passed via prop, not as a child):
 - Wrapped in `.cardWrap` div (`--color-surface`, `--shadow-card`, `--radius-lg`, `--space-8` padding)
@@ -67,18 +68,28 @@ Trust Pyramid image as `visualNode` (passed via prop, not as a child):
 
 ### 4. User Profile
 Layout: `text-only` **with `wide` prop** — required so the PersonaCard isn't capped at 680px
-- h2: "Who this is designed for"
-- One paragraph introducing Maya before the card renders
+
+Content grounded in `maya-tool-context.md` — the tool stays **unnamed** ("an enterprise AI workspace built for regulated industries"; internally modeled on North by Cohere, never mentioned in copy). Framing rule: the gap is the rollout, never the product.
+
+- h2: "Use case"
+- Three-beat narrative before the grid:
+  1. Maya + the tool — mid-level lending auditor at an equipment rental company; firm-wide AI initiative rolled out an enterprise AI workspace (AI assistant, search across internal systems, customizable agents for multi-step workflows)
+  2. What it should do — lending audit = pull loan file (application, income documents, credit reports, approval memos), verify decision followed policy; workspace searches/summarizes documents, extracts key figures, flags inconsistencies, drafts audit summary; a day of manual review → couple hours reviewing agent's work
+  3. The gap — confusion sits in her workflow, not the product; tool logs interactions and shows reasoning traces; closes with "The capability was deployed. The working relationship wasn't."
+- "What nobody told her" 3-item peach grid — reuses `.commonGround` / `.commonGroundItem` / `.commonGroundLabel` plus `.gapBelow` modifier (extra `--space-8` margin-bottom before the persona card):
+  - **Delegation** — Which parts of the audit is she allowed to delegate to the agent, and which must she still do herself?
+  - **Defensibility** — Is an agent-drafted summary defensible when a regulator asks who verified the income documents?
+  - **Judgment** — How does the agent decide a discrepancy is worth flagging versus ignoring?
 
 Then `PersonaCard` with `variant="automate"` (reuse existing component, new data):
 - name: "Maya"
 - imageAlt: "Maya, mid-level lending auditor"
 - imageSrc: placeholder for now (`/images/case-studies/maya.png`)
 - demographics: { age: "34", occupation: "Mid-level Lending Auditor", location: "Toronto, ON" }
-- quote: "I was handed this tool. Nobody explained what it's for or how to use it. I just need to know I can trust it before I put my name on anything."
+- quote: "The tool can show me exactly what it did. What nobody can tell me is whether I'm allowed to rely on it."
 - goals: ["Complete lending audits faster without sacrificing defensibility", "Understand what the agent is doing and why", "Build a workflow she can rely on case after case"]
-- painPoints: ["No training or setup guidance was provided", "Output needs to be defensible to managers and regulators", "Can't tell where the agent's judgment ends and hers begins"]
-- currentSolution: "Manual document review with no AI assistance"
+- painPoints: ["No one defined which audit steps she can delegate to the agent", "Output needs to be defensible to managers and regulators", "Can't tell where the agent's judgment ends and hers begins"]
+- currentSolution: "Re-verifies everything the agent produces manually - erasing the time savings"
 - interests: ["Professional accuracy", "Regulatory compliance", "Efficient workflows"]
 
 ### 5. Proposed Solution — Step Flow
