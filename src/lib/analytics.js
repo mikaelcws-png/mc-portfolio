@@ -12,6 +12,10 @@ export function initPostHog() {
     capture_pageview: false, // static export — pageviews fired manually on route change
     capture_pageleave: true,
   });
+  window.posthog = posthog; // npm bundle doesn't expose a console handle by default
+  if (new URLSearchParams(window.location.search).has('no_track')) {
+    posthog.opt_out_capturing(); // visit any page with ?no_track=1 to opt a device out permanently
+  }
   initialized = true;
 }
 
