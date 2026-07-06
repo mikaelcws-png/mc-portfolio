@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Nav.module.css';
+import { capture } from '@/lib/analytics';
 
 const RESUME_URL = 'https://docs.google.com/document/d/1WQB9v0uNSAhqpTb7eQeT1_Nc0902GC5KhXP6ttRilF8/edit?usp=drive_link';
 
@@ -39,6 +40,7 @@ export default function Nav() {
             target="_blank"
             rel="noopener noreferrer"
             className={styles.link}
+            onClick={() => capture('resume_downloaded', { location: 'nav' })}
           >
             Resume
           </a>

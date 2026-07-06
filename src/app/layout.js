@@ -1,6 +1,7 @@
 import { Inter, Instrument_Serif } from 'next/font/google';
 import '@/styles/globals.css';
 import Nav from '@/components/Nav/Nav';
+import Analytics from '@/components/Analytics/Analytics';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable}`}>
       <body>
+        <Analytics />
         <Nav />
         <main>{children}</main>
       </body>

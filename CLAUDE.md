@@ -15,6 +15,7 @@ Personal portfolio site for Mikael Cheung, UX/product designer based in Toronto.
 | Inter (next/font/google) | Primary sans-serif — self-hosted at build time, zero FOUT |
 | Instrument Serif (next/font/google) | Display serif — hero headline, About headings, case study h1 + h2s |
 | Vercel | Deployment |
+| PostHog (posthog-js) | Product analytics — see Analytics section |
 | JavaScript | No TypeScript |
 
 ---
@@ -222,6 +223,21 @@ For structured, data-driven visuals (process diagrams, persona cards, charts, st
 - Defaults to AutoMate inspection checkout flow
 - Animates on scroll using Framer Motion `useInView`; bars scale from 0 to their value with staggered timing
 - Responsive: bars scale with viewport; drop-off badge offset increases at `1200px` breakpoint
+
+---
+
+## Analytics (PostHog)
+
+Client-side only (static export — no server). Env vars: `NEXT_PUBLIC_POSTHOG_KEY` + `NEXT_PUBLIC_POSTHOG_HOST` in `.env.local` and Vercel. **Without the key, everything silently no-ops** — the site never breaks locally.
+
+- `src/lib/analytics.js` — `initPostHog()` (idempotent, `capture_pageview: false`) + `capture(event, props)` safe wrapper (lazily inits, no-ops without key). All event calls go through `capture`, never `posthog.capture` directly.
+- `src/components/Analytics/Analytics.js` — mounted in `layout.js`; fires `$pageview` manually on `usePathname()` change. Reads `window.location.search` instead of `useSearchParams()` deliberately: the required Suspense boundary would defer its mount, letting `case_study_opened` fire before `$pageview` and breaking strict-order funnels on direct landings.
+- `src/hooks/useScrollMilestones.js` — fires callback once per 25/50/75/100% depth per mount; also checks on mount for short pages.
+- `src/components/CaseStudyTracker/CaseStudyTracker.js` — renders null; mounted at the top of all 4 case study pages. Fires `case_study_opened` + `scroll_milestone`, both with `case_study` property (`automate` / `cozey` / `itinera` / `trust-calibration`).
+
+**Events:** `$pageview` (manual), `case_study_opened` {case_study}, `scroll_milestone` {depth, case_study}, `contact_clicked` {channel: 'linkedin', location} (Footer LinkedIn — no email link exists yet; wire `channel: 'email'` when one is added), `resume_downloaded` {location: 'nav' | 'footer'} (Nav + Footer resume links).
+
+Core funnel: land → `case_study_opened` → `scroll_milestone` (75) → `contact_clicked`. Footer is `'use client'` because of these click handlers.
 
 ---
 

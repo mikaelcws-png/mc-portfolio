@@ -4,6 +4,7 @@ import VisualBlock from '@/components/VisualBlock/VisualBlock';
 import PersonaCard from '@/components/PersonaCard/PersonaCard';
 import TrustCalibrationFlow from '@/components/TrustCalibrationFlow/TrustCalibrationFlow';
 import Footer from '@/components/Footer/Footer';
+import CaseStudyTracker from '@/components/CaseStudyTracker/CaseStudyTracker';
 import styles from './trust-calibration.module.css';
 
 export const metadata = {
@@ -19,6 +20,7 @@ const meta = [
 export default function TrustCalibrationPage() {
   return (
     <>
+      <CaseStudyTracker caseStudy="trust-calibration" />
       <CaseStudyHero
         title="Trust Calibration for Agentic AI in Enterprise"
         tagline="Agentic AI products are designed for users who already trust them. Most don't. This is what designing for the gap looks like."

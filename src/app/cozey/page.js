@@ -6,6 +6,7 @@ import Footer from '@/components/Footer/Footer';
 import CozeyEmotionChart from '@/components/CozeyEmotionChart/CozeyEmotionChart';
 import VisualBlock from '@/components/VisualBlock/VisualBlock';
 import ZoomImage from '@/components/ZoomImage/ZoomImage';
+import CaseStudyTracker from '@/components/CaseStudyTracker/CaseStudyTracker';
 import styles from './cozey.module.css';
 
 export const metadata = {
@@ -30,6 +31,7 @@ const meta = [
 export default function CozeyPage() {
   return (
     <>
+      <CaseStudyTracker caseStudy="cozey" />
       <CaseStudySidebar sections={sections} revealAtId="company" />
       <CaseStudyHero
         title="Cozey"

@@ -7,6 +7,7 @@ import PersonaCard from '@/components/PersonaCard/PersonaCard';
 import FigmaEmbed from '@/components/FigmaEmbed/FigmaEmbed';
 import NextProjectCard from '@/components/NextProjectCard/NextProjectCard';
 import Footer from '@/components/Footer/Footer';
+import CaseStudyTracker from '@/components/CaseStudyTracker/CaseStudyTracker';
 import styles from './automate.module.css';
 
 export const metadata = {
@@ -33,6 +34,7 @@ const meta = [
 export default function AutoMatePage() {
   return (
     <>
+      <CaseStudyTracker caseStudy="automate" />
       <CaseStudySidebar sections={sections} revealAtId="company" />
       <CaseStudyHero
         title="AutoMate"

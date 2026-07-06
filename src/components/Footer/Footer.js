@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { capture } from '@/lib/analytics';
 
 const RESUME_URL = 'https://docs.google.com/document/d/1WQB9v0uNSAhqpTb7eQeT1_Nc0902GC5KhXP6ttRilF8/edit?usp=drive_link';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/mikael-cheung/';
@@ -29,6 +32,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.columnLink}
+              onClick={() => capture('contact_clicked', { channel: 'linkedin', location: 'footer' })}
             >
               LinkedIn
             </a>
@@ -41,6 +45,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.columnLink}
+              onClick={() => capture('resume_downloaded', { location: 'footer' })}
             >
               Resume
             </a>

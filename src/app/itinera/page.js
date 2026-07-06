@@ -10,6 +10,7 @@ import PersonaCard from '@/components/PersonaCard/PersonaCard';
 import MarketDataViz from '@/components/MarketDataViz/MarketDataViz';
 import JourneyMap, { LAURA_DATA, WILLIAM_DATA } from '@/components/JourneyMap/JourneyMap';
 import FigmaEmbed from '@/components/FigmaEmbed/FigmaEmbed';
+import CaseStudyTracker from '@/components/CaseStudyTracker/CaseStudyTracker';
 import styles from './itinera.module.css';
 
 export const metadata = {
@@ -37,6 +38,7 @@ const meta = [
 export default function ItineraPage() {
   return (
     <>
+      <CaseStudyTracker caseStudy="itinera" />
       <CaseStudySidebar sections={sections} revealAtId="process" />
       <CaseStudyHero
         title="Itinera"
