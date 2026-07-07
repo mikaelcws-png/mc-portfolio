@@ -69,7 +69,7 @@ export default function TrustCalibrationFlow() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
               transition={{ duration: 0.45, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className={styles.shapeArea}>
+              <div className={`${styles.shapeArea} ${step.type === 'decision' ? styles.shapeAreaDecision : ''}`}>
                 <FlowShape type={step.type} title={step.title} />
               </div>
               <span className={styles.annotation}>{step.annotation}</span>

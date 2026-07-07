@@ -48,6 +48,8 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   padding: var(--space-8);
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 /* ── Tables ── */
@@ -57,6 +59,7 @@
 
 .table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
   font-size: var(--text-sm);
   margin-top: var(--space-6);
