@@ -63,7 +63,7 @@ export default function TrustCalibrationPage() {
       <CaseStudySection id="user-profile" label="User Profile" layout="text-only" wide>
         <h2>Use case</h2>
         <p>Maya is a mid-level lending auditor at an equipment rental company. As part of a firm-wide AI initiative, her team was given an enterprise AI workspace built for regulated industries - an AI assistant, search across the company's internal systems, and customizable agents that automate multi-step workflows.</p>
-        <p>On paper, it should transform her work. A lending audit means pulling a loan file - application, income documents, credit reports, approval memos - and verifying the decision followed policy. The workspace can search and summarize documents scattered across the company's systems, extract key figures, flag inconsistencies between what was documented and what policy requires, and draft the audit summary. A day of manual document review should become a couple of hours of reviewing the agent's work.</p>
+        <p>On paper, it should transform her work. A lending audit means pulling a file - application, bank statements, audit reports, approval memos - and verifying the decision followed policy. The workspace can search and summarize documents scattered across the company's systems, extract key figures, flag inconsistencies between what was documented and what policy requires, and draft the audit summary. A day of manual document review should become a couple of hours of reviewing the agent's work.</p>
         <p>But Maya's confusion sits in her workflow, not the product. The workspace logs its interactions and shows reasoning traces - the tool itself is well built. What nobody told her is how to work with it. The capability was deployed. The working relationship wasn't.</p>
         <div className={`${styles.commonGround} ${styles.gapBelow}`}>
           <div className={styles.commonGroundItem}>
@@ -72,7 +72,7 @@ export default function TrustCalibrationPage() {
           </div>
           <div className={styles.commonGroundItem}>
             <span className={styles.commonGroundLabel}>Defensibility</span>
-            <p>Is an agent-drafted summary defensible when a regulator asks who verified the income documents?</p>
+            <p>Is an agent-drafted summary defensible when a regulator asks who verified the bank statements?</p>
           </div>
           <div className={styles.commonGroundItem}>
             <span className={styles.commonGroundLabel}>Judgment</span>
