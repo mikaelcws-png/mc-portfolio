@@ -1,5 +1,5 @@
 .card {
-  background: var(--color-surface);
+  background: var(--color-surface) var(--texture-paper);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   padding: var(--space-10);
@@ -59,7 +59,7 @@
   width: 100px;
   height: 100px;
   transform: rotate(45deg);
-  background: var(--color-surface);
+  background: var(--color-surface) var(--texture-paper);
   border: 2px solid var(--color-accent);
   border-radius: var(--radius-sm);
   display: flex;
@@ -157,7 +157,7 @@
   height: 11px;
   display: inline-block;
   border: 1.5px solid var(--color-accent);
-  background: var(--color-surface);
+  background: var(--color-surface) var(--texture-paper);
   transform: rotate(45deg);
   border-radius: 2px;
   flex-shrink: 0;

@@ -10,14 +10,17 @@
 /* ── Design Tokens ── */
 :root {
   /* Colors */
-  --color-bg:              #F4F6F3;
-  --color-surface:         #FFFFFF;
+  --color-bg:              #F5F4E8;
+  --color-surface:         #FFFDF8;
   --color-accent:          #3A5635;
   --color-text-primary:    #111111;
-  --color-text-secondary:  #525C50;
+  --color-text-secondary:  #5C5A4E;
   --color-highlight-bg:    rgba(58, 86, 53, 0.10);
   --color-white:           #ffffff;
   --color-white-muted:     rgba(255, 255, 255, 0.8);
+
+  /* Paper-fiber texture for white card surfaces (desaturated turbulence, ~5% opacity) */
+  --texture-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23p)' opacity='0.05'/%3E%3C/svg%3E");
 
   /* Typography */
   --font-sans:  var(--font-inter), system-ui, sans-serif;
@@ -63,7 +66,7 @@
   --radius-img:  18px;    /* image inside card */
 
   /* Shadows */
-  --shadow-card:       0 4px 12px rgba(87, 87, 87, 0.16);
+  --shadow-card:       0 4px 16px rgba(92, 74, 50, 0.14);
   --shadow-nav:        0 4px 24px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0 16px 56px rgba(0, 0, 0, 0.13);
 
@@ -111,7 +114,7 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.07;
+  opacity: 0.08;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 200px 200px;

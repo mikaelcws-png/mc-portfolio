@@ -14,6 +14,7 @@ Personal portfolio site for Mikael Cheung, UX/product designer based in Toronto.
 | CSS custom properties | Design tokens in `src/styles/globals.css` |
 | Inter (next/font/google) | Primary sans-serif — self-hosted at build time, zero FOUT |
 | Instrument Serif (next/font/google) | Display serif — hero headline, About headings, case study h1 + h2s |
+| Looping hero video | `public/videos/hero-loop.mp4` — 9s seamless gouache loop, full-bleed homepage hero |
 | Vercel | Deployment |
 | PostHog (posthog-js) | Product analytics — see Analytics section |
 | JavaScript | No TypeScript |
@@ -28,12 +29,13 @@ Portfolio/
 │   ├── images/
 │   │   ├── about/           ← Photos for the About Me page
 │   │   └── case-studies/    ← Cover images for case study cards
+│   ├── videos/              ← hero-loop.mp4 (9s seamless loop) + hero-poster.jpg
 │   └── favicon.ico
 ├── src/
 │   ├── app/
 │   │   ├── layout.js        ← Root layout: loads Inter + Instrument Serif, globals.css, wraps Nav + Footer
-│   │   ├── page.js          ← Homepage (desktop/mobile split — see Homepage section below)
-│   │   ├── page.module.css  ← `.desktopOnly` / `.mobileOnly` display toggles, breakpoint 1024px
+│   │   ├── page.js          ← Homepage: VideoHero + CaseStudyGrid + Footer (all breakpoints)
+│   │   ├── page.module.css  ← `.below` wrapper (top padding for content under the hero)
 │   │   ├── about/page.js    ← About Me (horizontal snap-scroll)
 │   │   ├── automate/page.js ← Case study stub
 │   │   ├── cozey/page.js    ← Case study stub
@@ -41,10 +43,10 @@ Portfolio/
 │   ├── components/
 │   │   ├── Nav/             ← Nav.js + Nav.module.css
 │   │   ├── Footer/
-│   │   ├── Hero/            ← Still rendered on mobile homepage only (see Homepage section)
-│   │   ├── ThoughtMap/      ← Desktop-only homepage canvas thought map (ThoughtMap.js + .module.css)
+│   │   ├── VideoHero/       ← Full-bleed looping video hero (homepage, all breakpoints)
+│   │   ├── ThoughtMap/      ← RETIRED — no longer mounted anywhere; kept in repo for possible revival
 │   │   ├── CaseStudyCard/
-│   │   ├── CaseStudyGrid/   ← Still rendered on mobile homepage only
+│   │   ├── CaseStudyGrid/   ← Case study cards below the hero (all breakpoints)
 │   │   ├── PhotoCard/
 │   │   ├── Highlight/       ← Inline peach-tinted text emphasis span
 │   │   ├── AboutSection/    ← Horizontal snap-scroll container (highest complexity)
@@ -67,16 +69,19 @@ Portfolio/
 
 ### Colors
 
+Palette warmed July 2026 to match the gouache hero video (cream paper, peach sunset, sage hillside).
+
 | Token | Value | Usage |
 |---|---|---|
-| `--color-bg` | `#F4F6F3` | Page background (sage-tinted off-white) |
-| `--color-surface` | `#FFFFFF` | Cards, nav pill background |
-| `--color-accent` | `#3A5635` | "MC" logo, links, active states |
+| `--color-bg` | `#F5F4E8` | Page background (warm ivory with a green undertone — hue ~55°, chosen to harmonize with the sage highlight; a yellower cream `#F7F2E8` was tried first and felt off against the green) |
+| `--color-surface` | `#FFFDF8` | Cards, nav pill background (warm white) |
+| `--color-accent` | `#3A5635` | "MC" logo, links, active states (matches the video's hillside sage) |
 | `--color-text-primary` | `#111111` | Headings and body copy |
-| `--color-text-secondary` | `#525C50` | Muted labels, nav links at rest |
-| `--color-highlight-bg` | `rgba(58,86,53,0.10)` | Inline text highlight sage wash |
+| `--color-text-secondary` | `#5C5A4E` | Muted labels, nav links at rest (warm gray-olive) |
+| `--color-highlight-bg` | `rgba(58,86,53,0.10)` | Inline text highlight — sage wash (also all tinted stat blocks; a peach sunset wash was tried July 2026 and reverted — Mikael didn't like the orange) |
 | `--color-white` | `#ffffff` | Pure white — card text on dark/image backgrounds |
 | `--color-white-muted` | `rgba(255,255,255,0.8)` | Muted white — secondary text on dark/image backgrounds |
+| `--texture-paper` | SVG data-URI | Paper-fiber texture (desaturated `feTurbulence`, 5% opacity, 240px tile) layered on white card surfaces via `background: var(--color-surface) var(--texture-paper)` |
 
 ### Typography
 
@@ -86,8 +91,7 @@ Portfolio/
 - **Instrument Serif:** weight 400 only; always rendered `font-style: italic` in this project
 
 **Where `--font-serif` is used:**
-- `Hero` — mobile-only homepage headline (≤1024px), full headline, `font-size: clamp(1rem, 5vw, 3rem)` (16px–48px), forced 2-line split via `display: block` spans. Marked `'use client'`. Each word animates in with a bottom-to-top slide (`y: 16 → 0`) + fade, staggered at 70ms per word, 0.35s per-word duration, `cubic-bezier(0.4, 0, 0.2, 1)` easing — full sentence completes in ~0.98s.
-- `ThoughtMap` — desktop-only homepage headline (>1024px), same copy as `Hero`, set inside the center oval node at `font-size: clamp(1rem, 3.6vw, 2.5rem)` — slightly smaller than `Hero`'s max so it doesn't dominate the canvas. Main-node labels (`AutoMate`, `Cozey`, etc.) intentionally do **not** use `--font-serif` — they're drawn in Inter regular (400) directly via `ctx.font` on the canvas, matching the satellite labels' family, just at a larger size (20px vs 16px) and darker color (`#111111` vs `#525C50`) for hierarchy.
+- `VideoHero` — homepage headline (all breakpoints), overlaid on the looping video, `font-size: clamp(1rem, 5vw, 3rem)` (16px–48px), forced 2-line split via `display: block` spans. Marked `'use client'`. Each word animates in with a bottom-to-top slide (`y: 16 → 0`) + fade, staggered at 70ms per word, 0.35s per-word duration, `cubic-bezier(0.4, 0, 0.2, 1)` easing — full sentence completes in ~0.98s. (Animation inherited from the retired `Hero` component.)
 - `AboutSection` — all panel headings (`.heading` class)
 - `CaseStudyHero` — `.title` (case study name)
 - `CaseStudySection` — all `h2` section headings
@@ -117,15 +121,16 @@ Portfolio/
 --radius-pill: 100px;   /* nav */
 --radius-img:  18px;    /* image inside card */
 
---shadow-card:       0 8px 40px rgba(0,0,0,0.08);
+--shadow-card:       0 4px 16px rgba(92,74,50,0.14);   /* warm-tinted */
 --shadow-nav:        0 4px 24px rgba(0,0,0,0.06);
 --shadow-card-hover: 0 16px 56px rgba(0,0,0,0.13);
 ```
 
 ### Background & Texture
 
-- Page background: `#F9F7F4` (no grid lines — previously used `linear-gradient` grid, now removed)
-- Noise texture: `body::after` fixed layer, SVG `feTurbulence` filter at 7% opacity, `background-size: 200px 200px`, `pointer-events: none`, `z-index: 9999` — applies globally over all pages and sections
+- Page background: `--color-bg` warm ivory `#F5F4E8` (the 20px notebook-grid background was removed with the ThoughtMap homepage — it clashed with the painterly look)
+- Noise texture: `body::after` fixed layer, SVG `feTurbulence` filter at 8% opacity, `background-size: 200px 200px`, `pointer-events: none`, `z-index: 9999` — applies globally over all pages and sections
+- Paper texture: `--texture-paper` (see Colors) layered on top-level white card surfaces (PhotoCard, PersonaCard, JourneyMap, FunnelChart, chart/stat cards, table wrappers) — applied as `background: var(--color-surface) var(--texture-paper);`. Not applied to CaseStudyCard (its surface is fully covered by cover images).
 
 ### Motion
 
@@ -148,15 +153,19 @@ Portfolio/
 ## Pages
 
 ### Homepage (`/`)
-Desktop and mobile render entirely different homepages, both always present in the DOM and toggled via CSS (`src/app/page.module.css` — `.desktopOnly` / `.mobileOnly`, breakpoint `1024px`). Both render in `page.js` simultaneously; there's no JS viewport detection, so there's no hydration flash. `Footer` renders once, shared by both.
+One homepage for all breakpoints (since July 2026): `VideoHero` (full-bleed looping gouache video with the headline overlaid) → `CaseStudyGrid` (inside `.below`, `padding-top: --space-24`) → `Footer`. The old desktop/mobile split (`ThoughtMap` vs `Hero`) is retired — `ThoughtMap` files remain in the repo unmounted (see `ThoughtMap.md`); the `Hero` component was deleted (its word-stagger animation lives on in `VideoHero`).
 
-**Desktop (>1024px):** `ThoughtMap` — see `ThoughtMap.md` and `src/components/ThoughtMap/` for full implementation details. Summary: a full-viewport (`100vh`) interactive canvas thought map with four clusters (AutoMate, Cozey, Itinera, Trust Calibration) and satellite topic nodes, plus a center "headline node" — an oval styled like a quiet outline (not a glass card) containing the *"I'm Mikael, and I overthink / so you don't have to."* copy. The oval is connected to all four main nodes by edges that start at the oval's actual rendered border (computed live via `getBoundingClientRect()`, not the canvas's literal center point). The headline + oval fade in first; the four clusters scatter outward 900ms later. Hovering a node highlights its edges, dims the headline, and shows a floating glass hover card. A faint 20px grid (`rgba(0,0,0,0.03)`, notebook-paper effect) sits behind everything via `background-image` on `.section`.
-
-**Mobile/tablet (≤1024px):** `Hero` + `CaseStudyGrid`. The same faint 20px grid (`rgba(0,0,0,0.03)`) is applied to `.mobileOnly` in `page.module.css` so the background stays consistent with the desktop `ThoughtMap` view. Hero copy: *"I'm Mikael, and I overthink / so you don't have to."* — forced 2-line break via two `<span className={styles.line}>` blocks (`display: block; white-space: nowrap`). Full sentence in Instrument Serif italic. Font scales via `clamp(1rem, 5vw, 3rem)` (16px–48px) to stay 2 lines at all viewport widths. Each word is wrapped in a `<motion.span>` (inside a `<Fragment>` with a trailing `{' '}` for natural spacing). Words animate bottom-to-top (`y: 16 → 0`) with fade-in, staggered at 70ms per word, 0.35s duration each, `cubic-bezier(0.4, 0, 0.2, 1)` ease — all 10 words complete in ~0.98s. `Hero` is marked `'use client'`.
+**`VideoHero`** — `'use client'`, `src/components/VideoHero/`. A `100svh` (fallback `100vh`) section with:
+- `<video src="/videos/hero-loop.mp4" poster="/videos/hero-poster.jpg" autoPlay muted loop playsInline preload="auto">` — absolutely positioned, `object-fit: cover`, `object-position: center 40%` (keeps the figure + sunset band in frame at mobile portrait). The source is a 9s H.264 loop (1280×720, ~1.6MB, audio stripped) made seamless by crossfading the original clip's last second into its first via ffmpeg `xfade` — the raw AI-generated clip's first/last frames don't match. Original: `~/Downloads/Woman_writing_in_notebook_sea_202607081454.mp4`. Full-bleed crops the video's baked-in deckled paper border on non-16:9 viewports; if a 1080p+ regenerated version arrives it's a drop-in file swap.
+- Headline: *"I'm Mikael, and I overthink / so you don't have to."* — 2-line split via `display: block; white-space: nowrap` spans, Instrument Serif italic, `clamp(1rem, 5vw, 3rem)`, **white** (`--color-white`) with a soft slate text-shadow. Word-stagger entrance (see Typography section). Sits over a soft slate top scrim (`linear-gradient` from `rgba(43,58,72,0.32)` to transparent at 45%) that blends into the sky and carries the white text. (An earlier dark-text-on-cream-scrim version was replaced at Mikael's request.)
+- Subheadline (added July 2026): *"Diagnosing the real problem first and designing AI products people can actually trust."* — Inter, white, `clamp(--text-sm, 1.8vw, --text-lg)`, `max-width: 34rem`, `text-wrap: balance`, slate text-shadow. Fades in (y: 8→0) at 1.05s, right after the headline word-stagger (~0.98s) completes. (A longer version naming the PD→PM transition was tried and cut — Mikael felt stating the transition wasn't necessary; the copy still serves that positioning via diagnosis-first + AI trust.)
+- Scroll cue is also white with a slate text-shadow, opacity 0.85 → 1 on hover.
+- Scroll cue: "SCROLL ↓" link to `#case-studies`, fades in at 1.6s, arrow bobs (disabled under `prefers-reduced-motion`).
+- Reduced motion: `useEffect` checks `matchMedia('(prefers-reduced-motion: reduce)')` and pauses the video.
 
 `CaseStudyGrid` renders 4 cards from a `caseStudies` array in `CaseStudyGrid.js`: Trust Calibration and AutoMate (both `featured: true`, 480px height, identical styling) render side by side in a `.topRow` grid (stacks to 1 column, Trust Calibration first, at ≤640px); Cozey and Itinera (both `featured: false`, 400px height) render below in the existing `.row` grid (same ≤640px stacking). Trust Calibration card image: `trust-calibration-card-bg.png`, re-exported at 1600×800 (2:1) to match AutoMate's framing — `object-fit: cover` will visibly over-crop/zoom if a featured-size card uses a squarer source image.
 
-**Known tradeoff:** `ThoughtMap`'s canvas animation loop still runs while hidden (`display: none`) on mobile, since both components are always mounted. Negligible on a portfolio site, but worth knowing if this pattern gets reused somewhere more performance-sensitive.
+**Preview/testing gotcha:** in the Claude Code browser preview, a backgrounded tab reports `window.innerHeight = 0`, which collapses the `100svh` hero and produces blank/garbled screenshots when scrolled below the hero. This is a harness compositing artifact, not a site bug — verify below-fold content via the accessibility snapshot or `getBoundingClientRect()` checks instead.
 
 ### About Me (`/about`)
 Three sections that snap horizontally. Each section is `100vw` wide. CSS `scroll-snap-type: x mandatory` handles the snap; Framer Motion `useScroll({ container: ref, axis: 'x' })` drives content animations.
@@ -184,9 +193,11 @@ AutoMate, Cozey, Itinera — each page uses `CaseStudySection` to structure cont
 
 ## Component Notes
 
-**`Nav`** — Floating pill, `position: fixed`, centered with `width: fit-content; margin: 0 auto`. "MC" in `--color-accent` on left, links on right. Glassmorphic background (`rgba(255,255,255,0.55)` + `backdrop-filter: blur(48px) saturate(180%)`).
+**`Nav`** — Floating pill, `position: fixed`, centered with `width: fit-content; margin: 0 auto`. "MC" in `--color-accent` on left, links on right. Glassmorphic background (warm `rgba(255,251,242,0.6)` + `backdrop-filter: blur(48px) saturate(180%)`).
 
-**`ThoughtMap`** — `'use client'`, desktop-only homepage component (hidden on mobile via `page.module.css`). See `ThoughtMap.md` for full implementation details: graph structure, scatter animation, the headline/oval center node, and the ellipse-boundary edge math.
+**`VideoHero`** — `'use client'`, homepage hero for all breakpoints. See the Homepage section above for full details.
+
+**`ThoughtMap`** — RETIRED, not mounted anywhere (replaced by `VideoHero` in July 2026). Files kept in `src/components/ThoughtMap/` for possible revival. See `ThoughtMap.md` for full implementation details: graph structure, scatter animation, the headline/oval center node, and the ellipse-boundary edge math.
 
 **`Footer`** — Shared across all pages. Responsive: at `≤768px`, `.inner` switches from `flex-direction: row` to `column` (greeting/copyright stacks above the link columns), and `.columns` gap shrinks from `--space-12` to `--space-8`. "Glad you're here!" heading is `--font-weight-medium` (500) — was bold (700) before, which read too heavy at `--text-2xl`.
 

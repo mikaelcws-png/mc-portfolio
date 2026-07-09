@@ -1,5 +1,7 @@
 # ThoughtMap Component
 
+> **STATUS: RETIRED (July 2026).** No longer mounted anywhere — the homepage now uses `VideoHero` (full-bleed looping gouache video) on all breakpoints. Files kept in `src/components/ThoughtMap/` for possible revival; this doc describes the component as it last shipped.
+
 Interactive thought-map hero for the **desktop homepage only** (>1024px — see `src/app/page.module.css`). The headline appears first, inside an oval "hub" node at canvas center; 900ms later, four cluster dots scatter outward from that hub, connected to it by edges, while satellites and cross-links reveal alongside. Hovering any node highlights its direct edges and shows a case study card near the cursor. Clicking navigates to the case study. On mobile/tablet (≤1024px), the original `Hero` + `CaseStudyGrid` render instead — see the Homepage section in `CLAUDE.md`.
 
 ---

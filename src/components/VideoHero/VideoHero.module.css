@@ -1,0 +1,113 @@
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+/* Soft slate darkening at the top so the white headline stays legible over the pale sky */
+.scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 58, 72, 0.32),
+    rgba(43, 58, 72, 0) 45%
+  );
+}
+
+.headline {
+  position: relative;
+  margin-top: clamp(110px, 18vh, 180px);
+  padding: 0 var(--page-gutter);
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 5vw, 3rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-white);
+  text-shadow: 0 1px 16px rgba(30, 42, 54, 0.25);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+.subheadline {
+  position: relative;
+  margin-top: var(--space-4);
+  padding: 0 var(--page-gutter);
+  max-width: 34rem;
+  text-align: center;
+  text-wrap: balance;
+  font-size: clamp(var(--text-sm), 1.8vw, var(--text-lg));
+  line-height: var(--line-height-base);
+  color: var(--color-white);
+  text-shadow: 0 1px 12px rgba(30, 42, 54, 0.3);
+  opacity: 0.95;
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+}
+
+.word {
+  display: inline-block;
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-white);
+  text-shadow: 0 1px 8px rgba(30, 42, 54, 0.3);
+  opacity: 0.85;
+  transition: opacity var(--duration-fast) ease;
+}
+
+.scrollCue:hover {
+  opacity: 1;
+}
+
+.scrollLabel {
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scrollArrow {
+  animation: bob 2.2s var(--ease-out-expo) infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollArrow {
+    animation: none;
+  }
+}

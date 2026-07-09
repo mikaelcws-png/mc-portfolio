@@ -1,6 +1,6 @@
 /* ── Card wrapper ── */
 .figure {
-  background:    var(--color-surface);
+  background:    var(--color-surface) var(--texture-paper);
   border-radius: var(--radius-lg);
   box-shadow:    var(--shadow-card);
   padding:       var(--space-8);
