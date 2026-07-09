@@ -46,7 +46,7 @@ export default function AboutSection() {
         <div className={styles.inner}>
           <div className={styles.textContent}>
             <h1 className={styles.heading}>
-              Honestly? I have never thought of being a designer
+              Honestly? I have never thought of being in tech
             </h1>
             <p className={styles.body}>
               I started out as someone obsessed with{' '}
@@ -77,10 +77,10 @@ export default function AboutSection() {
           </div>
           <div className={styles.textContent}>
             <h2 className={styles.heading}>
-              Design is just understanding people, with a screen in between.
+              Product is just understanding people, with a screen in between.
             </h2>
             <p className={styles.body}>
-              That curiosity led me to product design, where I found a way to
+              That curiosity led me to product, where I found a way to
               actually do something about it. I believe every product should be
               intuitive enough that no one ever has to stop and think.{' '}
               When the first iPhone launched, nobody needed a tutorial, you just
@@ -97,7 +97,7 @@ export default function AboutSection() {
       <div className={styles.panel}>
         <div className={styles.inner}>
           <div className={styles.textContent}>
-            <h2 className={styles.heading}>When I&apos;m not designing?</h2>
+            <h2 className={styles.heading}>When I&apos;m not designing products?</h2>
             <p className={styles.body}>
               I&apos;m probably in a deep conversation with someone, hearing a
               story they&apos;ve never told anyone. I&apos;ve spent my whole
