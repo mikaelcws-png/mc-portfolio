@@ -97,7 +97,7 @@ export default function AboutSection() {
       <div className={styles.panel}>
         <div className={styles.inner}>
           <div className={styles.textContent}>
-            <h2 className={styles.heading}>When I&apos;m not designing products?</h2>
+            <h2 className={styles.heading}>When I&apos;m not building products?</h2>
             <p className={styles.body}>
               I&apos;m probably in a deep conversation with someone, hearing a
               story they&apos;ve never told anyone. I&apos;ve spent my whole
