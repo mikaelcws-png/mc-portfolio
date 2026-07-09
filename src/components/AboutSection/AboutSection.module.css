@@ -3,7 +3,6 @@
   position: relative;
   display: flex;
   overflow-x: scroll;
-  scroll-snap-type: x mandatory;
   scrollbar-width: none;
   height: 100vh;
 }
@@ -16,7 +15,6 @@
 .panel {
   flex-shrink: 0;
   min-width: 100vw;
-  scroll-snap-align: start;
   display: flex;
   align-items: center;
   padding-top: 80px;
@@ -128,7 +126,6 @@
     display: block;
     overflow-x: visible;
     height: auto;
-    scroll-snap-type: none;
   }
 
   .panel {

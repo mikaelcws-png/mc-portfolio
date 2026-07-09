@@ -12,31 +12,20 @@ export default function AboutSection() {
 
   const { scrollXProgress } = useScroll({ container: containerRef });
 
-  // Route vertical wheel scroll into panel-by-panel horizontal navigation
+  // Translate vertical wheel scroll into free horizontal scrolling
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    let isScrolling = false;
-
     const handleWheel = (e) => {
       if (window.innerWidth <= 768) return;
+      // Sideways trackpad swipes already scroll the container natively
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       e.preventDefault();
 
-      if (isScrolling) return;
-
-      const panelWidth = el.clientWidth;
-      const currentIndex = Math.round(el.scrollLeft / panelWidth);
-      const panelCount = Math.round(el.scrollWidth / panelWidth);
-      const targetIndex = e.deltaY > 0
-        ? Math.min(currentIndex + 1, panelCount - 1)
-        : Math.max(currentIndex - 1, 0);
-
-      if (targetIndex === currentIndex) return;
-
-      isScrolling = true;
-      el.scrollTo({ left: targetIndex * panelWidth, behavior: 'smooth' });
-      setTimeout(() => { isScrolling = false; }, 800);
+      // deltaMode: 0 = pixels, 1 = lines (Firefox mouse wheel), 2 = pages
+      const unit = e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? el.clientWidth : 1;
+      el.scrollLeft += e.deltaY * unit;
     };
 
     el.addEventListener('wheel', handleWheel, { passive: false });

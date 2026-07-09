@@ -168,7 +168,7 @@ One homepage for all breakpoints (since July 2026): `VideoHero` (full-bleed loop
 **Preview/testing gotcha:** in the Claude Code browser preview, a backgrounded tab reports `window.innerHeight = 0`, which collapses the `100svh` hero and produces blank/garbled screenshots when scrolled below the hero. This is a harness compositing artifact, not a site bug — verify below-fold content via the accessibility snapshot or `getBoundingClientRect()` checks instead.
 
 ### About Me (`/about`)
-Three sections that snap horizontally. Each section is `100vw` wide. CSS `scroll-snap-type: x mandatory` handles the snap; Framer Motion `useScroll({ container: ref, axis: 'x' })` drives content animations.
+Three sections on a free horizontal scroll (desktop). Each section is `100vw` wide. A wheel listener in `AboutSection` translates vertical wheel/trackpad input into horizontal `scrollLeft` movement 1:1 — no snapping, no page-flip hijack (a panel-by-panel `scrollTo` version was tried July 2026 and removed: macOS trackpad momentum kept triggering double page flips despite lock/debounce/intent-threshold guards). Sideways trackpad swipes (deltaX-dominant) pass through to native scrolling; Firefox line-mode wheel deltas are normalized. Mobile (≤768px) stacks panels vertically. Framer Motion `useScroll({ container: ref, axis: 'x' })` drives content animations and the progress dots.
 
 Layout per section:
 - Panel 1: text left, photo right — h1: *"Honestly? I have never thought of being a designer"* — photo: `public/images/about/panel 1 image.png`
@@ -205,7 +205,7 @@ AutoMate, Cozey, Itinera — each page uses `CaseStudySection` to structure cont
 
 **`Highlight`** — Inline `<span>` with `background: var(--color-highlight-bg)` and `border-radius: 4px`. Used in headings for sage emphasis.
 
-**`AboutSection`** — Mark `'use client'`. Set `overflow-x: scroll; scroll-snap-type: x mandatory; scrollbar-width: none` on the container. Pass a `ref` to `useScroll({ container: ref, axis: 'x' })` for scroll-driven animations.
+**`AboutSection`** — Mark `'use client'`. Set `overflow-x: scroll; scrollbar-width: none` on the container (no scroll-snap — see the About Me page notes). A `wheel` listener (non-passive, desktop only) maps `deltaY` to `scrollLeft` for free horizontal scrolling. Pass a `ref` to `useScroll({ container: ref, axis: 'x' })` for scroll-driven animations.
 
 **`CaseStudyCard`** — Use Framer Motion `whileHover={{ y: -4, boxShadow: '...' }}` for the lift effect.
 
